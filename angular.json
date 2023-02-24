@@ -1,0 +1,128 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "mealwallawebsite": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/mealwallawebsite",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "src/assets/css/core/",
+                "output": "/assets/css/core/"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets/css/",
+                "output": "/assets/css/"
+              }
+
+            ],
+            "styles": [
+              "src/styles.css",
+              "src/assets/css/core/libs.min.css",
+              "src/assets/css/aprycot.min.css"
+
+            ],
+            "scripts": [
+              "src/assets/js/core/libs.min.js",
+              "src/assets/js/core/external.min.js",
+              "src/assets/js/charts/widgetcharts.js",
+              "src/assets/js/charts/vectore-chart.js",
+              "src/assets/js/charts/dashboard.js",
+              "src/assets/js/charts/admin.js",
+              "src/assets/js/fslightbox.js",
+              "src/assets/vendor/gsap/gsap.min.js",
+              "src/assets/vendor/gsap/ScrollTrigger.min.js",
+              "src/assets/js/animation/gsap-init.js",
+              "src/assets/js/stepper.js",
+              "src/assets/js/form-wizard.js",
+              "src/assets/js/app.js",
+              "src/assets/vendor/moment.min.js"
+
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "mealwallawebsite:build:production"
+            },
+            "development": {
+              "browserTarget": "mealwallawebsite:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "mealwallawebsite:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  }
+}

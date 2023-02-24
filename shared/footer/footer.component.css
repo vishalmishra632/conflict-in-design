@@ -1,0 +1,14 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.left-panel {
+  display: inline-block;
+}
+
+.right-panel {
+  display: inline-block;
+  float: right;
+}
